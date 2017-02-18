@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 class Cart(models.Model):
     title = models.CharField(max_length=100,blank=True)
-    price = models.IntegerField(default=1,blank=True)
+    price = models.CharField(max_length=50,blank=True)
     photo = models.CharField(max_length=100,blank=True)
     info = models.TextField(blank=True)
     howtodeliver = models.CharField(max_length=100,blank=True)

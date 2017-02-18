@@ -19,6 +19,7 @@ from cart import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.cartlist),
+    url(r'^$', views.cartlist, name='home'),
     url(r'^urlsave$',views.urlsave),
+    url(r'^urlfail$',views.urlfail, name='fail'),
 ]
