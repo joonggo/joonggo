@@ -15,6 +15,7 @@ def urlsave(request):
         form =URLForm(request.POST)
         if form.is_valid():
             instance = form.save()
+            instance.crawling()
             print('저장 완료')
             context = {
                 'form':form,
