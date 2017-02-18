@@ -7,3 +7,6 @@ def cartlist(request):
         'carts' : carts,
     }
     return render(request, 'cart/cartlist.html',context)
+
+def urlsave(request):
+    return render(request,'cart/urlsave.html')
