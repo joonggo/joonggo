@@ -20,4 +20,5 @@ from cart import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.cartlist),
+    url(r'^urlsave$',views.urlsave),
 ]
