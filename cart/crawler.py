@@ -30,3 +30,6 @@ def joongo_crawler(url):
 
     date_list = soup.select('.date')
     date = date_list[0].text
+
+    photo_list = soup.select('.img_box img')
+    photo = photo_list[0].get('src')
