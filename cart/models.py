@@ -14,4 +14,3 @@ class Cart(models.Model):
 class URL(models.Model):
     url = models.CharField(max_length=400)
 
-    cart = Cart.objects.create(title=title, price=price, photo=photo, info=info, photo=photo, date=date)
