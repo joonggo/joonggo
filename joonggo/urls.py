@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^$', views.cartlist, name='home'),
     url(r'^urlsave$',views.urlsave),
     url(r'^urlfail$',views.urlfail, name='fail'),
+    url(r'^geturl$',views.geturl, name='geturl'),
 ]

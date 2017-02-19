@@ -37,3 +37,13 @@ def urlsave(request):
 
 def urlfail(request):
     return render(request, 'cart/urlfail.html',)
+
+
+def geturl(request):
+    if request.method =="GET":
+        q= request.GET.get('url','')
+        url=URL.objects.create(url=q)
+        url.crawling()
+    return render(request, 'cart/geturl.html',)
+
+

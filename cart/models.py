@@ -36,7 +36,10 @@ class URL(models.Model):
         price = txt_tag[0].text
         description = txt_tag[1].text
         how_method = txt_tag[2].text
-        how_deliver = txt_tag[3].text
+        try:
+            how_deliver = txt_tag[3].text
+        except:
+            pass
 
         price = price.strip()
         description = description.strip()
