@@ -18,6 +18,8 @@ hello~
 {% for cart in carts%}
 <h3>{{cart.title}}</h3>
 <p>{{cart.info}}</p>
+
+<a href="{{cart.url}}">이 상품으로 가기</a>
 {% endfor %}
 </body>
 </html>

@@ -10,11 +10,13 @@ class Cart(models.Model):
     howtodeliver = models.CharField(max_length=100,blank=True)
     howtodeal = models.CharField(max_length=100,blank=True)
     date = models.CharField(max_length=50, blank=True)
+    url = models.CharField(max_length=500, blank=True)
     def __str__(self):
         return self.title
 
 class URL(models.Model):
     url = models.CharField(max_length=400)
+    html = models.TextField(blank=True)
 
     def crawling(self):
 
@@ -48,11 +50,11 @@ class URL(models.Model):
 
         date_list = soup.select('.date')
         date = date_list[0].text
-
+        url = self.url
         photo_list = soup.select('.img_box img')
         photo = photo_list[0].get('src')
 
-        Cart.objects.create(title=name, price=price, photo=photo, info=description, howtodeliver=how_deliver, howtodeal=how_method, date=date)
+        Cart.objects.create(title=name, price=price, photo=photo, info=description, howtodeliver=how_deliver, howtodeal=how_method, date=date,url=url)
 
     def __str__(self):
         return self.url

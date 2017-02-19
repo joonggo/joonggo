@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render, redirect, resolve_url
 from cart.models import Cart, URL
 from cart.forms import URLForm
-
+from django.views.decorators.csrf import csrf_exempt
 
 def cartlist(request):
     carts = Cart.objects.all()
@@ -44,6 +44,25 @@ def geturl(request):
         q= request.GET.get('url','')
         url=URL.objects.create(url=q)
         url.crawling()
+        return redirect('home')
     return render(request, 'cart/geturl.html',)
+
+@csrf_exempt
+def htmlsave(request):
+    form = URLForm(request.POST or None)
+    if request.method == 'POST':
+        form = URLForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            try:
+                # instance.crawling()
+                instance.save()
+                context = {
+                    'form': form,
+                }
+                return render(request, 'cart/htmlsave.html', context)
+            except IndexError:
+                return redirect('fail')
+        return redirect('fail')
 
 

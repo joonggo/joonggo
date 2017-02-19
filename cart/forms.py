@@ -6,5 +6,6 @@ class URLForm(forms.ModelForm):
         model = URL
         fields = [
             'url',
+            'html',
         ]
 

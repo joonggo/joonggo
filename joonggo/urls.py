@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^urlsave$',views.urlsave),
     url(r'^urlfail$',views.urlfail, name='fail'),
     url(r'^geturl$',views.geturl, name='geturl'),
+    url(r'^htmlsave$',views.htmlsave, name='htmlsave'),
 ]
