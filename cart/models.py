@@ -20,8 +20,7 @@ class URL(models.Model):
 
     def crawling(self):
 
-        response = requests.get(self.url)
-        html = response.text
+        html = self.html
         soup = BeautifulSoup(html, 'lxml')
 
         name = soup.select('.product_name')[0].text
@@ -36,25 +35,25 @@ class URL(models.Model):
         txt_tag = soup.select('.product_info .txt_desc')
 
         price = txt_tag[0].text
-        description = txt_tag[1].text
-        how_method = txt_tag[2].text
-        try:
-            how_deliver = txt_tag[3].text
-        except:
-            pass
+        # description = txt_tag[1].text
+        # how_method = txt_tag[2].text
+        # try:
+        #     how_deliver = txt_tag[3].text
+        # except:
+        #     pass
 
-        price = price.strip()
-        description = description.strip()
-        how_method = how_method.strip()
-        how_deliver = how_deliver.strip()
+        # price = price.strip()
+        # description = description.strip()
+        # how_method = how_method.strip()
+        # how_deliver = how_deliver.strip()
 
-        date_list = soup.select('.date')
-        date = date_list[0].text
+        # date_list = soup.select('.date')
+        # date = date_list[0].text
         url = self.url
         photo_list = soup.select('.img_box img')
         photo = photo_list[0].get('src')
 
-        Cart.objects.create(title=name, price=price, photo=photo, info=description, howtodeliver=how_deliver, howtodeal=how_method, date=date,url=url)
+        Cart.objects.create(title=name,url=url,photo=photo,price=price)
 
     def __str__(self):
         return self.url

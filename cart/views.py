@@ -49,18 +49,17 @@ def geturl(request):
 
 @csrf_exempt
 def htmlsave(request):
-    form = URLForm(request.POST or None)
     if request.method == 'POST':
         form = URLForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
             try:
-                # instance.crawling()
+                instance.crawling()
                 instance.save()
                 context = {
                     'form': form,
                 }
-                return render(request, 'cart/htmlsave.html', context)
+                return redirect('home')
             except IndexError:
                 return redirect('fail')
         return redirect('fail')

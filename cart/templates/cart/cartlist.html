@@ -16,10 +16,12 @@
 {% include 'cart/navbar.html' %}
 hello~
 {% for cart in carts%}
-<h3>{{cart.title}}</h3>
-<p>{{cart.info}}</p>
+<div>
+    <h3>{{cart.title}}</h3>
+    <img src="{{cart.photo}}" class= 'img-responsive'>
+    <a href="{{cart.url}}" >이 상품으로 가기</a>
+</div>
 
-<a href="{{cart.url}}">이 상품으로 가기</a>
 {% endfor %}
 </body>
 </html>

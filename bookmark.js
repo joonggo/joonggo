@@ -1,0 +1,15 @@
+var form = document.createElement("form");
+form.setAttribute("method", "POST");
+form.setAttribute("action","http://127.0.0.1:8000/htmlsave" );
+var hiddenField = document.createElement("input");
+hiddenField.setAttribute("type", "hidden");
+hiddenField.setAttribute("name","url" );
+hiddenField.setAttribute("value", window.location.href);
+var HtmlField = document.createElement("input");
+HtmlField.setAttribute("type", "hidden");
+HtmlField.setAttribute("name","html" );
+HtmlField.setAttribute("value", document.getElementsByClassName('post')[0].outerHTML);
+form.appendChild(hiddenField);
+form.appendChild(HtmlField);
+document.body.appendChild(form);
+form.submit();
