@@ -18,7 +18,9 @@ hello~
 {% for cart in carts%}
 <div>
     <h3>{{cart.title}}</h3>
+    <a href="cart/{{cart.id}}/delete">삭제</a>
     <img src="{{cart.photo}}" class= 'img-responsive'>
+    <p>{{cart.price}}</p>
     <a href="{{cart.url}}" >이 상품으로 가기</a>
 </div>
 

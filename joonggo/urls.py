@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^urlfail$',views.urlfail, name='fail'),
     url(r'^geturl$',views.geturl, name='geturl'),
     url(r'^htmlsave$',views.htmlsave, name='htmlsave'),
+    url(r'^cart/(?P<cart_id>\d+)/delete$',views.cart_delete)
 ]

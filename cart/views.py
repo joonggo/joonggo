@@ -64,4 +64,9 @@ def htmlsave(request):
                 return redirect('fail')
         return redirect('fail')
 
+def cart_delete(request,cart_id):
+    cart = Cart.objects.get(id=cart_id)
+    cart.delete()
+    return redirect('home')
+
 
