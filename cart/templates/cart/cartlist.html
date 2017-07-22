@@ -18,6 +18,7 @@ hello~
 {% for cart in carts%}
 <div>
     <h3>{{cart.title}}</h3>
+    <button type="button" class="btn btn-default navbar-btn">{{cart.now_state}}</button>
     <a href="cart/{{cart.id}}/delete">삭제</a>
     <img src="{{cart.photo}}" class= 'img-responsive'>
     <p>{{cart.price}}</p>

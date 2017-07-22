@@ -59,7 +59,7 @@ def htmlsave(request):
                 context = {
                     'form': form,
                 }
-                return redirect('home')
+                return redirect(instance.url)
             except IndexError:
                 return redirect('fail')
         return redirect('fail')
