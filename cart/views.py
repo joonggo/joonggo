@@ -1,8 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, resolve_url
-from cart.models import Cart, URL
-from cart.forms import URLForm
+from cart.models import Cart
+from cart.forms import CartForm
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 
 def cartlist(request):
     carts = Cart.objects.all()
@@ -12,57 +13,23 @@ def cartlist(request):
     return render(request, 'cart/cartlist.html', context)
 
 
-def urlsave(request):
-    form = URLForm(request.POST or None)
-    if request.method == 'POST':
-        form = URLForm(request.POST)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            try:
-                instance.crawling()
-                instance.save()
-                context = {
-                    'form': form,
-                }
-                return render(request, 'cart/urlsave.html', context)
-            except IndexError:
-                return redirect('fail')
-
-    print(form)
-    context = {
-        'form': form,
-    }
-    return render(request, 'cart/urlsave.html', context)
-
-
 def urlfail(request):
     return render(request, 'cart/urlfail.html',)
 
 
-def geturl(request):
-    if request.method =="GET":
-        q= request.GET.get('url','')
-        url=URL.objects.create(url=q)
-        url.crawling()
-        return redirect('home')
-    return render(request, 'cart/geturl.html',)
-
 @csrf_exempt
 def htmlsave(request):
-    if request.is_ajax():
-        print("ajax()")
+    form = CartForm(request.POST or None)
     if request.method == 'POST':
-        form = URLForm(request.POST)
+        form = CartForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
-            print(instance.url)
             try:
-                instance.crawling()
-                instance.save()
+                instance.save(request.user)
                 context = {
                     'form': form,
                 }
-                return redirect(instance.url)
+                return HttpResponse("good")
             except IndexError:
                 return redirect('fail')
         print("여기")

@@ -1,9 +1,9 @@
 from django import forms
-from cart.models import Cart,URL
+from cart.models import Cart
 
-class URLForm(forms.ModelForm):
+class CartForm(forms.ModelForm):
     class Meta:
-        model = URL
+        model = Cart
         fields = [
             'url',
             'html',
