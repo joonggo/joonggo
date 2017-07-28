@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Joongo",
+  "description": "중고나라 장바구니",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "images.png",
+    "default_popup": "popup.html"
+  },
+
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}

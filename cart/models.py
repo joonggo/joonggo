@@ -27,7 +27,7 @@ class URL(models.Model):
         img=soup.select_one("#tbody > table > tbody > tr > th > div > img")["src"]
         product_info=soup.select_one("#tbody > table > tbody > tr > td > div")
         title=product_info.select_one("p.title").text
-        price=product_info.select_one("p.title_price").text
+        price=product_info.select_one("div.prod_price").text
         now_state=product_info.select_one("em")["aria-label"]
 
         Cart.objects.create(title=title,url=url,photo=img,price=price,now_state=now_state)

@@ -49,10 +49,13 @@ def geturl(request):
 
 @csrf_exempt
 def htmlsave(request):
+    if request.is_ajax():
+        print("ajax()")
     if request.method == 'POST':
         form = URLForm(request.POST)
         if form.is_valid():
             instance = form.save(commit=False)
+            print(instance.url)
             try:
                 instance.crawling()
                 instance.save()
@@ -62,6 +65,7 @@ def htmlsave(request):
                 return redirect(instance.url)
             except IndexError:
                 return redirect('fail')
+        print("여기")
         return redirect('fail')
 
 def cart_delete(request,cart_id):
