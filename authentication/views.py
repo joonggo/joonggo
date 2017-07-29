@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import SignupForm
+from django.contrib.auth.forms import AuthenticationForm as LoginForm
 # Create your views here.
 
 def signup(request):

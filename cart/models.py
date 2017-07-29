@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Cart(models.Model):
 
-    user = models.OneToOneField(User,related_name='user')
+    user = models.ForeignKey(User,related_name='carts')
     title = models.CharField(max_length=100,blank=True) # 이름
     price = models.CharField(max_length=50,blank=True)  # 물건 가격
     img = models.CharField(max_length=100,blank=True)   # 물건 사진
